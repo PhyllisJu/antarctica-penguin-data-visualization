@@ -7,7 +7,7 @@
 
 <body>
   <h3>Palmer Archipelago (Antarctica) Penguin Data</h3>
-  <svg id="culmen" height="500" width="1000"></svg>
+  <svg id="culmen" height="600" width="1000"></svg>
   <script>
     d3.csv("dataset/penguins_size.csv", d3.autoType)
       .then((data) => {
@@ -29,7 +29,7 @@
         let svg = d3.select('svg#culmen');
         const width = svg.attr('width');
         const height = svg.attr('height');
-        const margins = { top: 50, right: 200, bottom: 50, left: 50 };
+        const margins = { top: 50, right: 200, bottom: 75, left: 75 };
         const chartWidth = width - margins.left - margins.right;
         const chartHeight = height - margins.top - margins.bottom;
         const lengthExtent = d3.extent(data, d => d['culmen_length_mm']);
@@ -119,6 +119,20 @@
           .style("font", "14px Courier")
           .text("Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins")
 
+        let ylabel = svg.append('text')
+          .attr("transform", "rotate(-90)")
+          .attr("x", -margins.top - chartHeight / 2)
+          .attr("y", 25)
+          .style("text-anchor", "middle")
+          .style("font", "14px Courier")
+          .text("Culmen Depth(mm)")
+
+        let xlabel = svg.append('text')
+          .attr("x", margins.left + chartWidth / 2)
+          .attr("y", margins.top + chartHeight + 50)
+          .style("text-anchor", "middle")
+          .style("font", "14px Courier")
+          .text("Culmen Length(mm)")
       });
   </script>
 </body>
