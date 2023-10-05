@@ -29,7 +29,7 @@
         let svg = d3.select('svg#culmen');
         const width = svg.attr('width');
         const height = svg.attr('height');
-        const margins = { top: 10, right: 200, bottom: 50, left: 50 };
+        const margins = { top: 50, right: 200, bottom: 50, left: 50 };
         const chartWidth = width - margins.left - margins.right;
         const chartHeight = height - margins.top - margins.bottom;
         const lengthExtent = d3.extent(data, d => d['culmen_length_mm']);
@@ -50,7 +50,7 @@
           return d3.hsl(hue, 1, 0.4);
         }
         let bottomAxis = d3.axisBottom(xScale).ticks(5);
-        let verticalGridlines = d3.axisBottom(xScale).ticks(5).tickSize(-chartHeight - margins.top).tickFormat("");
+        let verticalGridlines = d3.axisBottom(xScale).ticks(5).tickSize(-chartHeight - 10).tickFormat("");
         svg.append('g')
           .attr('class', 'x axis')
           .attr('transform', `translate(${margins.left},${chartHeight + margins.top + 10})`)
@@ -60,7 +60,7 @@
           .attr('transform', `translate(${margins.left},${chartHeight + margins.top + 10})`)
           .call(verticalGridlines);
         let leftAxis = d3.axisLeft(yScale).ticks(5)
-        let horizontalGridlines = d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth - margins.top).tickFormat("");
+        let horizontalGridlines = d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth - 10).tickFormat("");
         svg.append('g')
           .attr('class', 'y axis')
           .attr('transform', `translate(${margins.left - 10},${margins.top})`)
@@ -110,6 +110,14 @@
           .text(function (d) {
             return d[0] + " - " + d[1].toLowerCase();
           });
+
+        //add title
+        let title = svg.append('text')
+          .attr("x", margins.left + chartWidth / 2)
+          .attr("y", 25)
+          .style("text-anchor", "middle")
+          .style("font", "14px Courier")
+          .text("Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins")
 
       });
   </script>
