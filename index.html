@@ -1,8 +1,118 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Palmer Archipelago (Antarctica) Penguin Data</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-  </head>
-  <body></body>
+
+<head>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <h3>Palmer Archipelago (Antarctica) Penguin Data</h3>
+  <svg id="culmen" height="500" width="1000"></svg>
+  <script>
+    d3.csv("dataset/penguins_size.csv", d3.autoType)
+      .then((data) => {
+        console.log(data)
+        //preprocess data
+        indices = []
+        data.forEach(function (d, i) {
+          if (d['culmen_length_mm'] == "NA" || d['culmen_depth_mm'] == "NA" || (!(d['sex'] == "MALE") && !(d['sex'] == "FEMALE"))) {
+            indices.push(i)
+          }
+          d['culmen_length_mm'] = Number(d['culmen_length_mm']);
+          d['culmen_depth_mm'] = Number(d['culmen_depth_mm']);
+        });
+        for (i = indices.length - 1; i >= 0; i--) {
+          data.splice(indices[i], 1)
+        }
+        console.log(data)
+        //create axes and gridlines
+        let svg = d3.select('svg#culmen');
+        const width = svg.attr('width');
+        const height = svg.attr('height');
+        const margins = { top: 10, right: 200, bottom: 50, left: 50 };
+        const chartWidth = width - margins.left - margins.right;
+        const chartHeight = height - margins.top - margins.bottom;
+        const lengthExtent = d3.extent(data, d => d['culmen_length_mm']);
+        const xScale = d3.scaleLinear().domain(lengthExtent).range([0, chartWidth]);
+        const depthExtent = d3.extent(data, d => d['culmen_depth_mm']);
+        const yScale = d3.scaleLinear().domain(depthExtent).range([chartHeight, 0]);
+        function colorScale(sp, g) {
+          let hue = 0;
+          if (g == "MALE") {
+            hue += 180;
+          }
+          if (sp == "Chinstrap") {
+            hue += 60;
+          }
+          if (sp == "Gentoo") {
+            hue += 120;
+          }
+          return d3.hsl(hue, 1, 0.4);
+        }
+        let bottomAxis = d3.axisBottom(xScale).ticks(5);
+        let verticalGridlines = d3.axisBottom(xScale).ticks(5).tickSize(-chartHeight - margins.top).tickFormat("");
+        svg.append('g')
+          .attr('class', 'x axis')
+          .attr('transform', `translate(${margins.left},${chartHeight + margins.top + 10})`)
+          .call(bottomAxis);
+        svg.append('g')
+          .attr('class', 'vgridlines')
+          .attr('transform', `translate(${margins.left},${chartHeight + margins.top + 10})`)
+          .call(verticalGridlines);
+        let leftAxis = d3.axisLeft(yScale).ticks(5)
+        let horizontalGridlines = d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth - margins.top).tickFormat("");
+        svg.append('g')
+          .attr('class', 'y axis')
+          .attr('transform', `translate(${margins.left - 10},${margins.top})`)
+          .call(leftAxis)
+        svg.append('g')
+          .attr('class', 'hgridlines')
+          .attr('transform', `translate(${margins.left - 10},${margins.top})`)
+          .call(horizontalGridlines);
+        let chartArea = svg.append('g')
+          .attr('transform', `translate(${margins.left},${margins.top})`);
+        //plot data points as circles
+        chartArea.selectAll('circle').data(data)
+          .join('circle')
+          .attr("fill", d => colorScale(d['species'], d['sex']))
+          .attr("cx", d => xScale(d['culmen_length_mm']))
+          .attr("cy", d => yScale(d['culmen_depth_mm']))
+          .attr("r", 5)
+          .attr("opacity", 0.8)
+
+        //add legend
+        let legend = svg.append('g')
+          .attr('transform', 'translate(' + (Number(chartWidth) + Number(margins.left) + 10) + ',' + Number(margins.top) + ')')
+        let categories = [
+          ["Adelie", "MALE"],
+          ["Adelie", "FEMALE"],
+          ["Chinstrap", "MALE"],
+          ["Chinstrap", "FEMALE"],
+          ["Gentoo", "MALE"],
+          ["Gentoo", "FEMALE"]
+        ];
+        legend.selectAll('.legend').data(categories)
+          .join('g')
+          .attr('class', 'legend')
+          .attr("transform", function (d, i) { return "translate(0," + i * 30 + ")"; })
+          .append('rect')
+          .attr("x", 0)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", function (d) {
+            return colorScale(d[0], d[1]);
+          })
+        legend.selectAll('.legend')
+          .append('text')
+          .attr("x", 20)
+          .attr("y", 14)
+          .style("text-anchor", "start")
+          .text(function (d) {
+            return d[0] + " - " + d[1].toLowerCase();
+          });
+
+      });
+  </script>
+</body>
+
 </html>
