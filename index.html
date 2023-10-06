@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Palmer Archipelago Penguin Analysis</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      img.penguin {
+          width: 200px; /* You can adjust this based on what looks best */
+          margin: 15px;
+          border-radius: 10px;
+      }
+    </style>
   </head>
 
   <body>
-    <h3>Palmer Archipelago (Antarctica) Penguin Data Visualization</h3>
+<!--    <h3>Palmer Archipelago (Antarctica) Penguin Data Visualization</h3>-->
+    <h1>Palmer Archipelago Penguin Analysis</h1>
+
+    <h3>About the Penguins</h3>
+    <p>The Palmer Archipelago in Antarctica is home to three primary penguin species:
+        <strong>Adelie</strong>, <strong>Chinstrap</strong>, and <strong>Gentoo</strong>.
+        <em>Adelie</em> penguins are known for their white ring surrounding the eye and their black feathers.
+        The <em>Chinstrap</em> penguin gets its name from the narrow black band under their head. In contrast,
+        <em>Gentoo</em> penguins are easily recognizable due to their bright red-orange bill and the white patch above their eyes.
+    </p>
+
+    <div>
+        <img src="images/adelie.jpeg" alt="Adelie Penguin" class="penguin">
+        <img src="images/chinstrap.jpeg" alt="Chinstrap Penguin" class="penguin">
+        <img src="images/gentoo.jpeg" alt="Gentoo Penguin" class="penguin">
+    </div>
+    <p>
+        Images source: <a href="https://www.nationalgeographic.com/" target="_blank">National Geographic</a>
+    </p>
+
+    <h2>Geographic Distribution of Penguins</h2>
+    <p>This graph depicts the geographic distribution of three species of penguins across three different locations: Torgersen, Dream, and Biscoe. In Torgersen, there's a notable presence of Adelie penguins with a count of 47, while Chinstrap and Gentoo penguins are absent. Dream Island displays a more diverse distribution with 55 Adelie and 68 Chinstrap penguins, but no Gentoos. Biscoe, on the other hand, has a predominant Gentoo population of 119, accompanied by 44 Adelies, and no Chinstraps. This distribution showcases the varying habitat preferences of these penguin species across the three locations.</p>
     <svg id="geographic" height="600" width="1000"></svg>
+
+    <h2>Culmen Dimensions Analysis</h2>
+    <p>This graph presents the culmen length and depth measurements of male and female penguins from three different species. The culmen is the upper ridge of a bird's beak. The analysis of culmen dimensions across different penguin species and genders reveals distinct patterns. Males consistently exhibit longer and deeper culmens compared to females across all species. In terms of species-specific differences, Adelie penguins have the most pronounced culmen, both in length and depth, standing out as the foremost. They are followed by the Chinstrap penguins, while the Gentoo penguins have the least pronounced culmens among the three species. Furthermore, when observing the data, each combination of species and gender forms its own clear and discernible cluster, highlighting the specific culmen dimensions unique to each group.</p>
     <svg id="culmen" height="600" width="1000"></svg>
+
+
 
     <script>
       const margins = { top: 50, right: 200, bottom: 75, left: 75 };
