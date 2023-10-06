@@ -69,6 +69,10 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
       margin-bottom: 40px;
     }
+
+    .gridlines line {
+      stroke: #bbb;
+    }
   </style>
 </head>
 
@@ -250,9 +254,9 @@
           .attr(
             "x",
             (s) =>
-            islandScale(island) +
-            speciesScale(s) +
-            speciesScale.bandwidth() / 2
+              islandScale(island) +
+              speciesScale(s) +
+              speciesScale.bandwidth() / 2
           )
           .attr("y", (s) => countScale(counts[island][s]) - 5)
           .attr("text-anchor", "middle")
@@ -330,7 +334,7 @@
       let verticalGridlines = d3
         .axisBottom(xScale)
         .ticks(5)
-        .tickSize(-chartHeight - 10)
+        .tickSize(-chartHeight)
         .tickFormat("");
       svg
         .append("g")
@@ -342,17 +346,17 @@
         .call(bottomAxis);
       svg
         .append("g")
-        .attr("class", "vgridlines")
+        .attr("class", "gridlines")
         .attr(
           "transform",
-          `translate(${margins.left},${chartHeight + margins.top + 10})`
+          `translate(${margins.left},${chartHeight + margins.top})`
         )
         .call(verticalGridlines);
       let leftAxis = d3.axisLeft(yScale).ticks(5);
       let horizontalGridlines = d3
         .axisLeft(yScale)
         .ticks(5)
-        .tickSize(-chartWidth - 10)
+        .tickSize(-chartWidth)
         .tickFormat("");
       svg
         .append("g")
@@ -361,8 +365,8 @@
         .call(leftAxis);
       svg
         .append("g")
-        .attr("class", "hgridlines")
-        .attr("transform", `translate(${margins.left - 10},${margins.top})`)
+        .attr("class", "gridlines")
+        .attr("transform", `translate(${margins.left},${margins.top})`)
         .call(horizontalGridlines);
       let chartArea = svg
         .append("g")
