@@ -386,7 +386,7 @@
           d3.select(".tooltip")
             .style("visibility", "visible")
             .html(
-              `Species: ${d.species}<br>Sex: ${d.sex}<br>Culmen Length: ${d.culmen_length_mm}mm<br>Culmen Depth: ${d.culmen_depth_mm}mm`
+              `Species: ${d.species}<br>Sex: ` + d.sex.charAt(0) + d.sex.substring(1).toLowerCase() + `<br>Culmen Length: ${d.culmen_length_mm}mm<br>Culmen Depth: ${d.culmen_depth_mm}mm`
             )
             .style("top", `${event.pageY}px`)
             .style("left", `${event.pageX + 15}px`);
@@ -442,7 +442,7 @@
         .attr("y", 14)
         .style("text-anchor", "start")
         .text(function (d) {
-          return d[0] + " - " + d[1].toLowerCase();
+          return d[0] + " - " + d[1].charAt(0) + d[1].substring(1).toLowerCase();;
         });
 
       //add title
