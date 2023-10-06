@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Palmer Archipelago Penguin Analysis</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 20px;
-        background-color: #f6f9fc;
-        color: #333;
-      }
 
-      h1,
-      h2,
-      h3 {
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #e9f0f5;
-        border-left: 5px solid #2a577f;
-        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px 0;
-      }
+<head>
+  <title>Palmer Archipelago Penguin Analysis</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 20px;
+      background-color: #f6f9fc;
+      color: #333;
+    }
 
-      h1 {
-        text-align: center;
-        margin-bottom: 40px;
-      }
+    h1,
+    h2,
+    h3 {
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: #e9f0f5;
+      border-left: 5px solid #2a577f;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+    }
 
-      .rect-hover:hover,
-      .point-hover:hover {
-        fill: #ffdb0f;
-        cursor: pointer;
-      }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
 
-      .tooltip {
-        position: absolute;
-        visibility: hidden;
-        background-color: white;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-      }
+    .rect-hover:hover,
+    .point-hover:hover {
+      fill: #ffdb0f;
+      cursor: pointer;
+    }
 
-      a {
-        color: #2a577f;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
+    .tooltip {
+      position: absolute;
+      visibility: hidden;
+      background-color: white;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
 
-      img.penguin {
-        width: 200px;
-        margin: 15px;
-        border-radius: 10px;
-        transition: transform 0.3s;
-      }
+    a {
+      color: #2a577f;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    img.penguin {
+      width: 200px;
+      margin: 15px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
 
     .penguin-container {
       display: flex;
@@ -72,33 +70,33 @@
       margin-bottom: 20px;
     }
 
-      svg {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 40px;
-      }
+    svg {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
 
-      .gridlines line {
-        stroke: #bbb;
-        stroke-dasharray: 4, 4;
-      }
-    </style>
-  </head>
+    .gridlines line {
+      stroke: #bbb;
+      stroke-dasharray: 4, 4;
+    }
+  </style>
+</head>
 
 <body>
   <h1>Palmer Archipelago Penguin Analysis</h1>
 
-    <h3>About the Penguins</h3>
-    <p>
-      The Palmer Archipelago in Antarctica is home to three primary penguin
-      species: <strong>Adelie</strong>, <strong>Chinstrap</strong>, and
-      <strong>Gentoo</strong>. <em>Adelie</em> penguins are known for their
-      white ring surrounding the eye and their black feathers. The
-      <em>Chinstrap</em> penguin gets its name from the narrow black band under
-      their head. In contrast, <em>Gentoo</em> penguins are easily recognizable
-      due to their bright red-orange bill and the white patch above their eyes.
-    </p>
+  <h3>About the Penguins</h3>
+  <p>
+    The Palmer Archipelago in Antarctica is home to three primary penguin
+    species: <strong>Adelie</strong>, <strong>Chinstrap</strong>, and
+    <strong>Gentoo</strong>. <em>Adelie</em> penguins are known for their
+    white ring surrounding the eye and their black feathers. The
+    <em>Chinstrap</em> penguin gets its name from the narrow black band under
+    their head. In contrast, <em>Gentoo</em> penguins are easily recognizable
+    due to their bright red-orange bill and the white patch above their eyes.
+  </p>
 
   <div class="penguin-container">
     <!-- Adelie Penguin Image -->
@@ -124,217 +122,217 @@
     Images source: <a href="https://www.nationalgeographic.com/" target="_blank">National Geographic</a>
   </p>
 
-    <h2>Geographic Distribution of Penguins</h2>
-    <p>
-      This graph depicts the geographic distribution of three species of
-      penguins across three different locations: Torgersen, Dream, and Biscoe.
-      In Torgersen, there's a notable presence of Adelie penguins with a count
-      of 47, while Chinstrap and Gentoo penguins are absent. Dream Island
-      displays a more diverse distribution with 55 Adelie and 68 Chinstrap
-      penguins, but no Gentoos. Biscoe, on the other hand, has a predominant
-      Gentoo population of 119, accompanied by 44 Adelies, and no Chinstraps.
-      This distribution showcases the varying habitat preferences of these
-      penguin species across the three locations.
-    </p>
-    <svg id="geographic" height="600" width="1000"></svg>
+  <h2>Geographic Distribution of Penguins</h2>
+  <p>
+    This graph depicts the geographic distribution of three species of
+    penguins across three different locations: Torgersen, Dream, and Biscoe.
+    In Torgersen, there's a notable presence of Adelie penguins with a count
+    of 47, while Chinstrap and Gentoo penguins are absent. Dream Island
+    displays a more diverse distribution with 55 Adelie and 68 Chinstrap
+    penguins, but no Gentoos. Biscoe, on the other hand, has a predominant
+    Gentoo population of 119, accompanied by 44 Adelies, and no Chinstraps.
+    This distribution showcases the varying habitat preferences of these
+    penguin species across the three locations.
+  </p>
+  <svg id="geographic" height="600" width="1000"></svg>
 
-    <h2>Culmen Dimensions Analysis</h2>
-    <p>
-      This graph presents the culmen length and depth measurements of male and
-      female penguins from three different species. The culmen is the upper
-      ridge of a bird's beak. The analysis of culmen dimensions across different
-      penguin species and genders reveals distinct patterns. Males consistently
-      exhibit longer and deeper culmens compared to females across all species.
-      In terms of species-specific differences, Adelie penguins have the most
-      pronounced culmen, both in length and depth, standing out as the foremost.
-      They are followed by the Chinstrap penguins, while the Gentoo penguins
-      have the least pronounced culmens among the three species. Furthermore,
-      when observing the data, each combination of species and gender forms its
-      own clear and discernible cluster, highlighting the specific culmen
-      dimensions unique to each group.
-    </p>
-    <svg id="culmen" height="600" width="1000"></svg>
+  <h2>Culmen Dimensions Analysis</h2>
+  <p>
+    This graph presents the culmen length and depth measurements of male and
+    female penguins from three different species. The culmen is the upper
+    ridge of a bird's beak. The analysis of culmen dimensions across different
+    penguin species and genders reveals distinct patterns. Males consistently
+    exhibit longer and deeper culmens compared to females across all species.
+    In terms of species-specific differences, Adelie penguins have the most
+    pronounced culmen, both in length and depth, standing out as the foremost.
+    They are followed by the Chinstrap penguins, while the Gentoo penguins
+    have the least pronounced culmens among the three species. Furthermore,
+    when observing the data, each combination of species and gender forms its
+    own clear and discernible cluster, highlighting the specific culmen
+    dimensions unique to each group.
+  </p>
+  <svg id="culmen" height="600" width="1000"></svg>
 
-    <script>
-      const margins = {
-        top: 50,
-        right: 200,
-        bottom: 75,
-        left: 75,
-      };
-      d3.csv("dataset/penguins_size.csv", d3.autoType).then((data) => {
-        console.log(data);
+  <script>
+    const margins = {
+      top: 50,
+      right: 200,
+      bottom: 75,
+      left: 75,
+    };
+    d3.csv("dataset/penguins_size.csv", d3.autoType).then((data) => {
+      console.log(data);
 
-        //preprocess data
-        indices = [];
-        data.forEach(function (d, i) {
-          if (
-            d["culmen_length_mm"] == "NA" ||
-            d["culmen_depth_mm"] == "NA" ||
-            (!(d["sex"] == "MALE") && !(d["sex"] == "FEMALE"))
-          ) {
-            indices.push(i);
-          }
-          d["culmen_length_mm"] = Number(d["culmen_length_mm"]);
-          d["culmen_depth_mm"] = Number(d["culmen_depth_mm"]);
-        });
-        for (i = indices.length - 1; i >= 0; i--) {
-          data.splice(indices[i], 1);
+      //preprocess data
+      indices = [];
+      data.forEach(function (d, i) {
+        if (
+          d["culmen_length_mm"] == "NA" ||
+          d["culmen_depth_mm"] == "NA" ||
+          (!(d["sex"] == "MALE") && !(d["sex"] == "FEMALE"))
+        ) {
+          indices.push(i);
         }
-        console.log(data);
+        d["culmen_length_mm"] = Number(d["culmen_length_mm"]);
+        d["culmen_depth_mm"] = Number(d["culmen_depth_mm"]);
+      });
+      for (i = indices.length - 1; i >= 0; i--) {
+        data.splice(indices[i], 1);
+      }
+      console.log(data);
 
-        // Geographic graph:
-        const svg2 = d3.select("svg#geographic");
-        const width2 = svg2.attr("width");
-        const height2 = svg2.attr("height");
-        const chartWidth2 = width2 - margins.left - margins.right;
-        const chartHeight2 = height2 - margins.top - margins.bottom;
-        // create extents
-        const speciesExtent = ["Adelie", "Chinstrap", "Gentoo"]; // all species in the dataset
-        const islandExtent = ["Torgersen", "Dream", "Biscoe"]; // all islands in the dataset
-        let counts = {}; // a dictionary; stores the number of each species on each island
-        islandExtent.forEach((island) => {
-          counts[island] = {};
-          speciesExtent.forEach((s) => {
-            let filteredSpecies = data.filter(
-              (d) => d["island"] === island && d["species"] === s
-            );
-            counts[island][s] = filteredSpecies.length;
-          });
+      // Geographic graph:
+      const svg2 = d3.select("svg#geographic");
+      const width2 = svg2.attr("width");
+      const height2 = svg2.attr("height");
+      const chartWidth2 = width2 - margins.left - margins.right;
+      const chartHeight2 = height2 - margins.top - margins.bottom;
+      // create extents
+      const speciesExtent = ["Adelie", "Chinstrap", "Gentoo"]; // all species in the dataset
+      const islandExtent = ["Torgersen", "Dream", "Biscoe"]; // all islands in the dataset
+      let counts = {}; // a dictionary; stores the number of each species on each island
+      islandExtent.forEach((island) => {
+        counts[island] = {};
+        speciesExtent.forEach((s) => {
+          let filteredSpecies = data.filter(
+            (d) => d["island"] === island && d["species"] === s
+          );
+          counts[island][s] = filteredSpecies.length;
         });
-        console.log(counts);
-        const maxCount = d3.max(islandExtent, (island) =>
-          d3.max(speciesExtent, (s) => counts[island][s])
-        ); // y maximum
-        // create scales
-        const islandScale = d3
-          .scaleBand()
-          .domain(islandExtent)
-          .range([0, chartWidth2])
-          .padding(0.2);
-        const speciesScale = d3
-          .scaleBand()
-          .domain(speciesExtent)
-          .range([0, islandScale.bandwidth()])
-          .padding(0.1);
-        const countScale = d3
-          .scaleLinear()
-          .domain([0, maxCount])
-          .range([chartHeight2, 0]);
-        const colorScale2 = d3
-          .scaleOrdinal()
-          .domain(speciesExtent)
-          .range(d3.schemeCategory10);
-        // create axes
-        let leftAxis2 = d3.axisLeft(countScale);
-        const yAxis2 = svg2
-          .append("g")
-          .attr("transform", `translate(${margins.left - 10},${margins.top})`)
-          .call(leftAxis2);
-        yAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
-        let bottomAxis2 = d3.axisBottom(islandScale);
-        const xAxis2 = svg2
-          .append("g")
+      });
+      console.log(counts);
+      const maxCount = d3.max(islandExtent, (island) =>
+        d3.max(speciesExtent, (s) => counts[island][s])
+      ); // y maximum
+      // create scales
+      const islandScale = d3
+        .scaleBand()
+        .domain(islandExtent)
+        .range([0, chartWidth2])
+        .padding(0.2);
+      const speciesScale = d3
+        .scaleBand()
+        .domain(speciesExtent)
+        .range([0, islandScale.bandwidth()])
+        .padding(0.1);
+      const countScale = d3
+        .scaleLinear()
+        .domain([0, maxCount])
+        .range([chartHeight2, 0]);
+      const colorScale2 = d3
+        .scaleOrdinal()
+        .domain(speciesExtent)
+        .range(d3.schemeCategory10);
+      // create axes
+      let leftAxis2 = d3.axisLeft(countScale);
+      const yAxis2 = svg2
+        .append("g")
+        .attr("transform", `translate(${margins.left - 10},${margins.top})`)
+        .call(leftAxis2);
+      yAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
+      let bottomAxis2 = d3.axisBottom(islandScale);
+      const xAxis2 = svg2
+        .append("g")
+        .attr(
+          "transform",
+          `translate(${margins.left},${chartHeight2 + margins.top})`
+        )
+        .call(bottomAxis2);
+      xAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
+      // creat labels
+      svg2
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -margins.top - chartHeight2 / 2)
+        .attr("y", 25)
+        .style("text-anchor", "middle")
+        // .style("font", "14px Courier")
+        .text("Number of Penguins");
+      svg2
+        .append("text")
+        .attr("x", margins.left + chartWidth2 / 2)
+        .attr("y", margins.top + chartHeight2 + 50)
+        .style("text-anchor", "middle")
+        // .style("font", "14px Courier")
+        .text("Island");
+      // create chart area
+      const chartArea2 = svg2
+        .append("g")
+        .attr("transform", `translate(${margins.left}, ${margins.top})`);
+      // draw the bar groups for each island
+      const islandGroups = chartArea2
+        .selectAll(".island-group")
+        .data(islandExtent)
+        .enter()
+        .append("g")
+        .attr("class", "island-group");
+      islandGroups.each(function (island) {
+        let barGroup = d3.select(this);
+        barGroup
+          .selectAll("rect")
+          .data(speciesExtent)
+          .join("rect")
+          .attr("x", (s) => islandScale(island) + speciesScale(s))
+          .attr("y", (s) => countScale(counts[island][s]))
+          .attr("width", speciesScale.bandwidth())
+          .attr("height", 0)
+          .transition()
+          .duration(1000)
+          .delay((s, i) => i * 250)
+          .attr("height", (s) => chartHeight2 - countScale(counts[island][s]))
+          .attr("fill", (s) => colorScale2(s));
+        // add labels
+        barGroup
+          .selectAll("text")
+          .data(speciesExtent)
+          .join("text")
           .attr(
-            "transform",
-            `translate(${margins.left},${chartHeight2 + margins.top})`
+            "x",
+            (s) =>
+            islandScale(island) +
+            speciesScale(s) +
+            speciesScale.bandwidth() / 2
           )
-          .call(bottomAxis2);
-        xAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
-        // creat labels
-        svg2
-          .append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("x", -margins.top - chartHeight2 / 2)
-          .attr("y", 25)
-          .style("text-anchor", "middle")
-          // .style("font", "14px Courier")
-          .text("Number of Penguins");
-        svg2
-          .append("text")
-          .attr("x", margins.left + chartWidth2 / 2)
-          .attr("y", margins.top + chartHeight2 + 50)
-          .style("text-anchor", "middle")
-          // .style("font", "14px Courier")
-          .text("Island");
-        // create chart area
-        const chartArea2 = svg2
-          .append("g")
-          .attr("transform", `translate(${margins.left}, ${margins.top})`);
-        // draw the bar groups for each island
-        const islandGroups = chartArea2
-          .selectAll(".island-group")
-          .data(islandExtent)
-          .enter()
-          .append("g")
-          .attr("class", "island-group");
-        islandGroups.each(function (island) {
-          let barGroup = d3.select(this);
-          barGroup
-            .selectAll("rect")
-            .data(speciesExtent)
-            .join("rect")
-            .attr("x", (s) => islandScale(island) + speciesScale(s))
-            .attr("y", (s) => countScale(counts[island][s]))
-            .attr("width", speciesScale.bandwidth())
-            .attr("height", 0)
-            .transition()
-            .duration(1000)
-            .delay((s, i) => i * 250)
-            .attr("height", (s) => chartHeight2 - countScale(counts[island][s]))
-            .attr("fill", (s) => colorScale2(s));
-          // add labels
-          barGroup
-            .selectAll("text")
-            .data(speciesExtent)
-            .join("text")
-            .attr(
-              "x",
-              (s) =>
-                islandScale(island) +
-                speciesScale(s) +
-                speciesScale.bandwidth() / 2
-            )
-            .attr("y", (s) => countScale(counts[island][s]) - 5)
-            .attr("text-anchor", "middle")
-            .text((s) => counts[island][s])
-            .style("fill", (s) => colorScale2(s));
-          barGroup
-            .selectAll("rect")
-            .on("mouseover", function (event, s) {
-              d3.select(this).classed("rect-hover", true);
-              d3.select(".tooltip")
-                .style("visibility", "visible")
-                .html(`${s}: ${counts[island][s]} Penguins`)
-                .style("top", `${event.pageY}px`)
-                .style("left", `${event.pageX + 15}px`);
-            })
-            .on("mouseout", function () {
-              d3.select(this).classed("rect-hover", false);
-              d3.select(".tooltip").style("visibility", "hidden");
-            });
-        });
-        // draw the legend
-        const legend2 = chartArea2
-          .append("g")
-          .attr("transform", `translate(${chartWidth2}, 0)`);
-        speciesExtent.forEach((s, i) => {
-          legend2
-            .append("rect")
-            .attr("x", 0)
-            .attr("y", i * 30)
-            .attr("width", 18)
-            .attr("height", 18)
-            .attr("fill", colorScale2(s));
+          .attr("y", (s) => countScale(counts[island][s]) - 5)
+          .attr("text-anchor", "middle")
+          .text((s) => counts[island][s])
+          .style("fill", (s) => colorScale2(s));
+        barGroup
+          .selectAll("rect")
+          .on("mouseover", function (event, s) {
+            d3.select(this).classed("rect-hover", true);
+            d3.select(".tooltip")
+              .style("visibility", "visible")
+              .html(`${s}: ${counts[island][s]} Penguins`)
+              .style("top", `${event.pageY}px`)
+              .style("left", `${event.pageX + 15}px`);
+          })
+          .on("mouseout", function () {
+            d3.select(this).classed("rect-hover", false);
+            d3.select(".tooltip").style("visibility", "hidden");
+          });
+      });
+      // draw the legend
+      const legend2 = chartArea2
+        .append("g")
+        .attr("transform", `translate(${chartWidth2}, 0)`);
+      speciesExtent.forEach((s, i) => {
+        legend2
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", i * 30)
+          .attr("width", 18)
+          .attr("height", 18)
+          .attr("fill", colorScale2(s));
 
-          legend2
-            .append("text")
-            .attr("x", 25)
-            .attr("y", i * 30 + 9)
-            .text(s)
-            .attr("text-anchor", "start")
-            .style("alignment-baseline", "middle");
-        });
+        legend2
+          .append("text")
+          .attr("x", 25)
+          .attr("y", i * 30 + 9)
+          .text(s)
+          .attr("text-anchor", "start")
+          .style("alignment-baseline", "middle");
+      });
 
       // Culmen graph:
       //create axes and gridlines
@@ -344,14 +342,16 @@
       const chartWidth = width - margins.left - margins.right;
       const chartHeight = height - margins.top - margins.bottom;
       const lengthExtent = d3.extent(data, (d) => d["culmen_length_mm"]);
+      const xBuffer = (lengthExtent[1] - lengthExtent[0]) * 0.05;
       const xScale = d3
         .scaleLinear()
-        .domain(lengthExtent)
+        .domain([lengthExtent[0] - xBuffer, lengthExtent[1] + xBuffer])
         .range([0, chartWidth]);
       const depthExtent = d3.extent(data, (d) => d["culmen_depth_mm"]);
+      const yBuffer = (depthExtent[1] - depthExtent[0]) * 0.05;
       const yScale = d3
         .scaleLinear()
-        .domain(depthExtent)
+        .domain([depthExtent[0] - yBuffer, depthExtent[1] + yBuffer])
         .range([chartHeight, 0]);
 
       function colorScale(sp, g) {
@@ -359,9 +359,9 @@
         if (sp == "Adelie") {
           hue = g == "MALE" ? 210 : 190; // Blue to Cyan spectrum
         } else if (sp == "Chinstrap") {
-          hue = g == "MALE" ? 80 : 70;  // Green to Lime spectrum
+          hue = g == "MALE" ? 80 : 70; // Green to Lime spectrum
         } else if (sp == "Gentoo") {
-          hue = g == "MALE" ? 0 : 315;   // Red to Pink spectrum
+          hue = g == "MALE" ? 0 : 315; // Red to Pink spectrum
         }
 
         return d3.hsl(hue, 1, 0.5);
@@ -412,23 +412,23 @@
         .attr("transform", `translate(${margins.left},${margins.top})`);
       //plot data points as circles
       chartArea
-              .selectAll("circle")
-              .data(data)
-              .join("circle")
-              .attr("fill", (d) => colorScale(d["species"], d["sex"]))
-              .attr("cx", (d) => xScale(d["culmen_length_mm"]))
-              .attr("cy", (d) => yScale(d["culmen_depth_mm"]))
-              .attr("r", 5)
-              .attr("opacity", 0.8)
-              .on("mouseover", function (event, d) {
+        .selectAll("circle")
+        .data(data)
+        .join("circle")
+        .attr("fill", (d) => colorScale(d["species"], d["sex"]))
+        .attr("cx", (d) => xScale(d["culmen_length_mm"]))
+        .attr("cy", (d) => yScale(d["culmen_depth_mm"]))
+        .attr("r", 5)
+        .attr("opacity", 0.8)
+        .on("mouseover", function (event, d) {
           d3.select(this).classed("point-hover", true);
           d3.select(".tooltip")
             .style("visibility", "visible")
             .html(
-                `Species: ${d.species}<br>Sex: ` +
-                d.sex.charAt(0) +
-                d.sex.substring(1).toLowerCase() +
-                `<br>Culmen Length: ${d.culmen_length_mm}mm<br>Culmen Depth: ${d.culmen_depth_mm}mm`
+              `Species: ${d.species}<br>Sex: ` +
+              d.sex.charAt(0) +
+              d.sex.substring(1).toLowerCase() +
+              `<br>Culmen Length: ${d.culmen_length_mm}mm<br>Culmen Depth: ${d.culmen_depth_mm}mm`
             )
             .style("top", `${event.pageY}px`)
             .style("left", `${event.pageX + 15}px`);
@@ -457,20 +457,20 @@
         ["Gentoo", "FEMALE"],
       ];
       legend
-              .selectAll(".legend")
-              .data(categories)
-              .join("g")
-              .attr("class", "legend")
-              .attr("transform", function (d, i) {
-                return "translate(0," + i * 30 + ")";
-              })
-              .append("circle")
-              .attr("cx", 9)
-              .attr("cy", 9)
-              .attr("r", 9)
-              .style("fill", function (d) {
-                return colorScale(d[0], d[1]);
-              });
+        .selectAll(".legend")
+        .data(categories)
+        .join("g")
+        .attr("class", "legend")
+        .attr("transform", function (d, i) {
+          return "translate(0," + i * 30 + ")";
+        })
+        .append("circle")
+        .attr("cx", 9)
+        .attr("cy", 9)
+        .attr("r", 9)
+        .style("fill", function (d) {
+          return colorScale(d[0], d[1]);
+        });
       legend
         .selectAll(".legend")
         .append("text")
@@ -478,40 +478,41 @@
         .attr("y", 14)
         .style("text-anchor", "start")
         .text(function (d) {
-            return (
-                d[0] + " - " + d[1].charAt(0) + d[1].substring(1).toLowerCase()
-            );
+          return (
+            d[0] + " - " + d[1].charAt(0) + d[1].substring(1).toLowerCase()
+          );
         });
 
-        // //add title
-        // let title = svg
-        //   .append("text")
-        //   .attr("x", margins.left + chartWidth / 2)
-        //   .attr("y", 25)
-        //   .style("text-anchor", "middle")
-        //   // .style("font", "14px Courier")
-        //   .text(
-        //     "Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins"
-        //   );
+      // //add title
+      // let title = svg
+      //   .append("text")
+      //   .attr("x", margins.left + chartWidth / 2)
+      //   .attr("y", 25)
+      //   .style("text-anchor", "middle")
+      //   // .style("font", "14px Courier")
+      //   .text(
+      //     "Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins"
+      //   );
 
-        let ylabel = svg
-          .append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("x", -margins.top - chartHeight / 2)
-          .attr("y", 25)
-          .style("text-anchor", "middle")
-          // .style("font", "14px Courier")
-          .text("Culmen Depth(mm)");
+      let ylabel = svg
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -margins.top - chartHeight / 2)
+        .attr("y", 25)
+        .style("text-anchor", "middle")
+        // .style("font", "14px Courier")
+        .text("Culmen Depth(mm)");
 
-        let xlabel = svg
-          .append("text")
-          .attr("x", margins.left + chartWidth / 2)
-          .attr("y", margins.top + chartHeight + 50)
-          .style("text-anchor", "middle")
-          // .style("font", "14px Courier")
-          .text("Culmen Length(mm)");
-      });
-    </script>
-    <div class="tooltip"></div>
-  </body>
+      let xlabel = svg
+        .append("text")
+        .attr("x", margins.left + chartWidth / 2)
+        .attr("y", margins.top + chartHeight + 50)
+        .style("text-anchor", "middle")
+        // .style("font", "14px Courier")
+        .text("Culmen Length(mm)");
+    });
+  </script>
+  <div class="tooltip"></div>
+</body>
+
 </html>
