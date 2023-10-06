@@ -451,10 +451,10 @@
           .attr("transform", function (d, i) {
             return "translate(0," + i * 30 + ")";
           })
-          .append("rect")
-          .attr("x", 0)
-          .attr("width", 18)
-          .attr("height", 18)
+          .append("circle")
+          .attr("cx", 10)
+          .attr("cy", 8)
+          .attr("r", 9)
           .style("fill", function (d) {
             return colorScale(d[0], d[1]);
           });
@@ -470,16 +470,16 @@
             );
           });
 
-        //add title
-        let title = svg
-          .append("text")
-          .attr("x", margins.left + chartWidth / 2)
-          .attr("y", 25)
-          .style("text-anchor", "middle")
-          // .style("font", "14px Courier")
-          .text(
-            "Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins"
-          );
+        // //add title
+        // let title = svg
+        //   .append("text")
+        //   .attr("x", margins.left + chartWidth / 2)
+        //   .attr("y", 25)
+        //   .style("text-anchor", "middle")
+        //   // .style("font", "14px Courier")
+        //   .text(
+        //     "Culmen Length(mm) and Width(mm) of Male and Female Adelie, Chinstrap, and Gentoo Penguins"
+        //   );
 
         let ylabel = svg
           .append("text")
