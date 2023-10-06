@@ -57,6 +57,12 @@
       transition: transform 0.3s;
     }
 
+    .penguin-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
 
     p {
       line-height: 1.6;
@@ -77,7 +83,6 @@
 </head>
 
 <body>
-  <!--    <h3>Palmer Archipelago (Antarctica) Penguin Data Visualization</h3>-->
   <h1>Palmer Archipelago Penguin Analysis</h1>
 
   <h3>About the Penguins</h3>
@@ -89,11 +94,26 @@
     eyes.
   </p>
 
-  <div>
-    <img src="images/adelie.jpeg" alt="Adelie Penguin" class="penguin">
-    <img src="images/chinstrap.jpeg" alt="Chinstrap Penguin" class="penguin">
-    <img src="images/gentoo.jpeg" alt="Gentoo Penguin" class="penguin">
+  <div class="penguin-container">
+    <!-- Adelie Penguin Image -->
+    <figure>
+      <img src="images/adelie.jpeg" alt="Adelie Penguin" class="penguin">
+      <figcaption>Adelie Penguin. Photo courtesy of National Geographic.</figcaption>
+    </figure>
+
+    <!-- Chinstrap Penguin Image -->
+    <figure>
+      <img src="images/chinstrap.jpeg" alt="Chinstrap Penguin" class="penguin">
+      <figcaption>Chinstrap Penguin. Photo courtesy of National Geographic.</figcaption>
+    </figure>
+
+    <!-- Gentoo Penguin Image -->
+    <figure>
+      <img src="images/gentoo.jpeg" alt="Gentoo Penguin" class="penguin">
+      <figcaption>Gentoo Penguin. Photo courtesy of National Geographic.</figcaption>
+    </figure>
   </div>
+
   <p>
     Images source: <a href="https://www.nationalgeographic.com/" target="_blank">National Geographic</a>
   </p>
@@ -316,19 +336,18 @@
         .scaleLinear()
         .domain(depthExtent)
         .range([chartHeight, 0]);
-
       function colorScale(sp, g) {
         let hue = 0;
-        if (g == "MALE") {
-          hue += 180;
+
+        if (sp == "Adelie") {
+          hue = g == "MALE" ? 210 : 190; // Blue to Cyan spectrum
+        } else if (sp == "Chinstrap") {
+          hue = g == "MALE" ? 80 : 70;  // Green to Lime spectrum
+        } else if (sp == "Gentoo") {
+          hue = g == "MALE" ? 0 : 315;   // Red to Pink spectrum
         }
-        if (sp == "Chinstrap") {
-          hue += 60;
-        }
-        if (sp == "Gentoo") {
-          hue += 120;
-        }
-        return d3.hsl(hue, 1, 0.4);
+
+        return d3.hsl(hue, 1, 0.5);
       }
       let bottomAxis = d3.axisBottom(xScale).ticks(5);
       let verticalGridlines = d3
@@ -371,17 +390,16 @@
       let chartArea = svg
         .append("g")
         .attr("transform", `translate(${margins.left},${margins.top})`);
-      //plot data points as circles
       chartArea
-        .selectAll("circle")
-        .data(data)
-        .join("circle")
-        .attr("fill", (d) => colorScale(d["species"], d["sex"]))
-        .attr("cx", (d) => xScale(d["culmen_length_mm"]))
-        .attr("cy", (d) => yScale(d["culmen_depth_mm"]))
-        .attr("r", 5)
-        .attr("opacity", 0.8)
-        .on("mouseover", function (event, d) {
+              .selectAll("circle")
+              .data(data)
+              .join("circle")
+              .attr("fill", (d) => colorScale(d["species"], d["sex"]))
+              .attr("cx", (d) => xScale(d["culmen_length_mm"]))
+              .attr("cy", (d) => yScale(d["culmen_depth_mm"]))
+              .attr("r", 5)
+              .attr("opacity", 0.8)
+              .on("mouseover", function (event, d) {
           d3.select(this).classed("point-hover", true);
           d3.select(".tooltip")
             .style("visibility", "visible")
@@ -395,12 +413,6 @@
           d3.select(this).classed("point-hover", false);
           d3.select(".tooltip").style("visibility", "hidden");
         });
-
-
-
-
-
-
       //add legend
       let legend = svg
         .append("g")
@@ -421,20 +433,20 @@
         ["Gentoo", "FEMALE"],
       ];
       legend
-        .selectAll(".legend")
-        .data(categories)
-        .join("g")
-        .attr("class", "legend")
-        .attr("transform", function (d, i) {
-          return "translate(0," + i * 30 + ")";
-        })
-        .append("rect")
-        .attr("x", 0)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", function (d) {
-          return colorScale(d[0], d[1]);
-        });
+              .selectAll(".legend")
+              .data(categories)
+              .join("g")
+              .attr("class", "legend")
+              .attr("transform", function (d, i) {
+                return "translate(0," + i * 30 + ")";
+              })
+              .append("circle")  // using circle instead of rect for legend
+              .attr("cx", 9)  // center x for circle
+              .attr("cy", 9)  // center y for circle
+              .attr("r", 9)   // radius for circle
+              .style("fill", function (d) {
+                return colorScale(d[0], d[1]);
+              });
       legend
         .selectAll(".legend")
         .append("text")
@@ -475,6 +487,8 @@
 
 
     });
+
+
   </script>
   <div class="tooltip"></div>
 
