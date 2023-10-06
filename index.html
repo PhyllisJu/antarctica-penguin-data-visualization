@@ -10,12 +10,19 @@
     <style>
       body {
         font-family: "Poppins", sans-serif;
-        margin: 20px;
+        margin: 20px auto;
         background-color: #f6f9fc;
         color: #333;
+        width: 70%;
       }
 
-      h1,
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 10px 20px;
+        margin: 20px 0;
+      }
+
       h2,
       h3 {
         padding: 10px 20px;
@@ -26,9 +33,58 @@
         margin: 20px 0;
       }
 
-      h1 {
-        text-align: center;
+      strong {
+        color: #2a577f;
+      }
+
+      a {
+        color: #2a577f;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      p {
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      svg {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 40px;
+      }
+
+      .svg-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .penguin-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .penguin-container figure {
+        width: 20%;
+      }
+
+      img.penguin {
+        width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+
+      .penguin-container figcaption {
+        text-align: center;
+      }
+
+      .gridlines line {
+        stroke: #bbb;
+        stroke-dasharray: 4, 4;
       }
 
       .rect-hover:hover,
@@ -46,52 +102,16 @@
         border-radius: 4px;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
       }
-
-      a {
-        color: #2a577f;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      img.penguin {
-        width: 200px;
-        margin: 15px;
-        border-radius: 10px;
-        transition: transform 0.3s;
-      }
-
-      .penguin-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      p {
-        line-height: 1.6;
-        margin-bottom: 20px;
-      }
-
-      svg {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 40px;
-      }
-
-      .gridlines line {
-        stroke: #bbb;
-        stroke-dasharray: 4, 4;
-      }
     </style>
   </head>
 
   <body>
     <h1>Palmer Archipelago Penguin Analysis</h1>
 
-    <h3>About the Penguins</h3>
+    <h2>About the Penguins</h2>
     <p>
-      The Palmer Archipelago in Antarctica is home to three primary penguin
-      species: <strong>Adelie</strong>, <strong>Chinstrap</strong>, and
+      The Palmer Archipelago in Antarctica is home to 3 primary penguin species:
+      <strong>Adelie</strong>, <strong>Chinstrap</strong>, and
       <strong>Gentoo</strong>. <em>Adelie</em> penguins are known for their
       white ring surrounding the eye and their black feathers. The
       <em>Chinstrap</em> penguin gets its name from the narrow black band under
@@ -103,9 +123,7 @@
       <!-- Adelie Penguin Image -->
       <figure>
         <img src="images/adelie.jpeg" alt="Adelie Penguin" class="penguin" />
-        <figcaption>
-          Adelie Penguin. Photo courtesy of National Geographic.
-        </figcaption>
+        <figcaption>Adelie Penguin</figcaption>
       </figure>
 
       <!-- Chinstrap Penguin Image -->
@@ -115,22 +133,18 @@
           alt="Chinstrap Penguin"
           class="penguin"
         />
-        <figcaption>
-          Chinstrap Penguin. Photo courtesy of National Geographic.
-        </figcaption>
+        <figcaption>Chinstrap Penguin</figcaption>
       </figure>
 
       <!-- Gentoo Penguin Image -->
       <figure>
         <img src="images/gentoo.jpeg" alt="Gentoo Penguin" class="penguin" />
-        <figcaption>
-          Gentoo Penguin. Photo courtesy of National Geographic.
-        </figcaption>
+        <figcaption>Gentoo Penguin</figcaption>
       </figure>
     </div>
 
-    <p>
-      Images source:
+    <p style="text-align: center">
+      Image source:
       <a href="https://www.nationalgeographic.com/" target="_blank"
         >National Geographic</a
       >
@@ -139,33 +153,39 @@
     <h2>Geographic Distribution of Penguins</h2>
     <p>
       This graph depicts the geographic distribution of three species of
-      penguins across three different locations: Torgersen, Dream, and Biscoe.
-      In Torgersen, there's a notable presence of Adelie penguins with a count
-      of 47, while Chinstrap and Gentoo penguins are absent. Dream Island
-      displays a more diverse distribution with 55 Adelie and 68 Chinstrap
-      penguins, but no Gentoos. Biscoe, on the other hand, has a predominant
-      Gentoo population of 119, accompanied by 44 Adelies, and no Chinstraps.
-      This distribution showcases the varying habitat preferences of these
-      penguin species across the three locations.
+      penguins across three different locations: <strong>Torgersen</strong>,
+      <strong>Dream</strong>, and <strong>Biscoe</strong>. In Torgersen, there's
+      a notable presence of Adelie penguins with a count of 47, while Chinstrap
+      and Gentoo penguins are absent. Dream Island displays a more diverse
+      distribution with 55 Adelie and 68 Chinstrap penguins, but no Gentoos.
+      Biscoe, on the other hand, has a predominant Gentoo population of 119,
+      accompanied by 44 Adelies, and no Chinstraps. Another interesting fact is
+      that Adelie penguins are widely distributed across all three islands. This
+      distribution showcases the varying habitat preferences of these penguin
+      species across the three locations.
     </p>
-    <svg id="geographic" height="600" width="1000"></svg>
+    <div class="svg-container">
+      <svg id="geographic" height="600" width="1000"></svg>
+    </div>
 
-    <h2>Culmen Dimensions Analysis</h2>
+    <h2>Culmen Dimensions Across Species & Genders</h2>
     <p>
       This graph presents the culmen length and depth measurements of male and
       female penguins from three different species. The culmen is the upper
       ridge of a bird's beak. The analysis of culmen dimensions across different
       penguin species and genders reveals distinct patterns. Males consistently
-      exhibit longer and deeper culmens compared to females across all species.
-      In terms of species-specific differences, Adelie penguins have the most
-      pronounced culmen, both in length and depth, standing out as the foremost.
-      They are followed by the Chinstrap penguins, while the Gentoo penguins
-      have the least pronounced culmens among the three species. Furthermore,
-      when observing the data, each combination of species and gender forms its
-      own clear and discernible cluster, highlighting the specific culmen
-      dimensions unique to each group.
+      exhibit <strong>longer</strong> and <strong>deeper</strong> culmens
+      compared to females across all species. In terms of species-specific
+      differences, Adelie penguins have the most pronounced culmen, both in
+      length and depth, standing out as the foremost. They are followed by the
+      Chinstrap penguins, while the Gentoo penguins have the least pronounced
+      culmens among the three species. Furthermore, when observing the data,
+      each combination of species and gender forms its own clear and discernible
+      cluster, highlighting the specific culmen dimensions unique to each group.
     </p>
-    <svg id="culmen" height="600" width="1000"></svg>
+    <div class="svg-container">
+      <svg id="culmen" height="600" width="1000"></svg>
+    </div>
 
     <script>
       const margins = {
@@ -236,14 +256,17 @@
         const colorScale2 = d3
           .scaleOrdinal()
           .domain(speciesExtent)
-          .range(d3.schemeCategory10);
+          .range(["#47A8BD", "#FFAD69", "#E0479E"]);
         // create axes
         let leftAxis2 = d3.axisLeft(countScale);
         const yAxis2 = svg2
           .append("g")
           .attr("transform", `translate(${margins.left - 10},${margins.top})`)
           .call(leftAxis2);
-        yAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
+        yAxis2
+          .selectAll("text")
+          .style("font-family", "Poppins, sans-serif")
+          .style("font-size", "12px");
         let bottomAxis2 = d3.axisBottom(islandScale);
         const xAxis2 = svg2
           .append("g")
@@ -252,7 +275,10 @@
             `translate(${margins.left},${chartHeight2 + margins.top})`
           )
           .call(bottomAxis2);
-        xAxis2.selectAll("text").style("font-family", "Poppins, sans-serif");
+        xAxis2
+          .selectAll("text")
+          .style("font-family", "Poppins, sans-serif")
+          .style("font-size", "13px");
         // creat labels
         svg2
           .append("text")
@@ -379,7 +405,7 @@
               FEMALE: "#F5E663",
             },
             Gentoo: {
-              MALE: "#9C3848",
+              MALE: "#E0479E",
               FEMALE: "#FFAFC5",
             },
           };
@@ -404,7 +430,10 @@
             `translate(${margins.left},${chartHeight + margins.top + 10})`
           )
           .call(bottomAxis);
-        xAxis.selectAll("text").style("font-family", "Poppins, sans-serif");
+        xAxis
+          .selectAll("text")
+          .style("font-family", "Poppins, sans-serif")
+          .style("font-size", "12px");
         svg
           .append("g")
           .attr("class", "gridlines")
@@ -424,7 +453,10 @@
           .attr("class", "y axis")
           .attr("transform", `translate(${margins.left - 10},${margins.top})`)
           .call(leftAxis);
-        yAxis.selectAll("text").style("font-family", "Poppins, sans-serif");
+        yAxis
+          .selectAll("text")
+          .style("font-family", "Poppins, sans-serif")
+          .style("font-size", "12px");
         svg
           .append("g")
           .attr("class", "gridlines")
